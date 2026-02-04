@@ -16,7 +16,7 @@ const env = {
     AKASH_GAS_ADJUSTMENT: '1.5',
     AKASH_GAS_PRICES: '0.025uakt',
     AKASH_SIGN_MODE: 'amino-json',
-    AKASH_CHAIN_ID: 'testnet-7',
+    AKASH_CHAIN_ID: 'testnet-8',
     AKASH_NODE: 'https://testnetrpc.akashnet.net:443'
 };
 
@@ -41,11 +41,11 @@ app.post('/faucet', async (req, res) => {
         });
     }
     
-    console.log(`Sending 100 AKT to ${address}`);
+    console.log(`Sending 500 AKT to ${address}`);
     
     try {
         // Use your proven working command
-        const command = `akash tx bank send faucet-wallet ${address} 100000000uakt --yes`;
+        const command = `akash tx bank send faucet-wallet ${address} 500000000uakt --yes`;
         const { stdout, stderr } = await execAsync(command, { env });
         
         if (stderr && !stdout) {
@@ -62,8 +62,8 @@ app.post('/faucet', async (req, res) => {
         res.json({
             success: true,
             txhash: txhash,
-            amount: '100000000uakt',
-            message: '100 AKT sent successfully!'
+            amount: '500000000uakt',
+            message: '500 AKT sent successfully!'
         });
         
     } catch (error) {
@@ -81,7 +81,7 @@ app.get('/', (req, res) => {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Akash Testnet-7 Faucet</title>
+    <title>Akash Testnet-8 Faucet</title>
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -143,17 +143,17 @@ app.get('/', (req, res) => {
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Akash Testnet-7 Faucet</h1>
+        <h1>🚀 Akash Testnet-8 Faucet</h1>
         
         <div class="info">
-            <strong>Get 100 AKT tokens for testing!</strong><br>
+            <strong>Get 500 AKT tokens for testing!</strong><br>
             • One request per address per 24 hours<br>
             • Tokens are for testnet use only<br>
-            • Chain ID: testnet-7
+            • Chain ID: testnet-8
         </div>
         
         <input type="text" id="address" placeholder="Enter Akash address (akash1...)" />
-        <button onclick="requestTokens()" id="requestBtn">Request 100 AKT</button>
+        <button onclick="requestTokens()" id="requestBtn">Request 500 AKT</button>
         
         <div id="result"></div>
         
@@ -196,7 +196,7 @@ app.get('/', (req, res) => {
                     resultDiv.innerHTML = \`
                         <div class="success">
                             <strong>✅ Success!</strong><br>
-                            <strong>Amount:</strong> 100 AKT<br>
+                            <strong>Amount:</strong> 500 AKT<br>
                             <strong>TX Hash:</strong> \${data.txhash}<br>
                             <strong>Recipient:</strong> \${address}
                         </div>
@@ -208,7 +208,7 @@ app.get('/', (req, res) => {
                 resultDiv.innerHTML = \`<div class="error"><strong>❌ Network Error:</strong> \${error.message}</div>\`;
             } finally {
                 btn.disabled = false;
-                btn.textContent = 'Request 100 AKT';
+                btn.textContent = 'Request 500 AKT';
             }
         }
         

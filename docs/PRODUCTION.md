@@ -364,7 +364,7 @@ akash keys list
 akash query bank balances $(akash keys show faucet-wallet -a)
 
 # Test transaction manually
-akash tx bank send faucet-wallet <test-address> 1000000uakt --yes
+akash tx bank send faucet-wallet <test-address> 5000000uakt --yes
 ```
 
 ## Security Best Practices
